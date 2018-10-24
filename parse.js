@@ -20,10 +20,13 @@ function mapComponentByAtomic(entries, result) {
 }
 
 function generateComponentModel() {
-    let components = require.context('!raw-loader!./../../src/components', true, /.jsx$/);
+    // makes and assumption about the path of the project components and reads all jsx
+    // I really want to improve this so that we get access to the component strings by default
+    let components = require.context('!raw-loader!./../src/components', true, /.jsx$/);
     const files = components.keys().map(filename => filename);
 
     const fileAndComponentContent = files.map(item => {
+        // a lot of this is specific to my needs 
         return {
             file: path.resolve('../src/components', item),
             content: components(item),

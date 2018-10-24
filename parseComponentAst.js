@@ -1,5 +1,9 @@
 import traverse from 'babel-traverse';
 import { parse } from '@babel/parser';
+
+// this code takes a string file of es6/react component and parses the ast to see which components are used
+// it is very basic and makes the assumption that all ImportDeclaration which start with a capital letter are components
+// very react focused
 class Parser {
     constructor(code) {
         this.code = code;
