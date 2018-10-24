@@ -19,6 +19,8 @@ class UsedComponents extends React.Component {
         this.stopListeningOnStory = api.onStory((kind, story) => this.setComponents([]));
 
         this.stopListeningOnStory = api.onStory((kind, story) => {
+            // because we use hierarchySeparator - usuallyt the story would have Atoms | Button
+            // we use regex to clean it up
             const currentComponent = kind.replace(/([A-Z]).+\s/g, '');
             const usedComponents = componentModel.find(item => item.file.includes(currentComponent));
 
